@@ -49,18 +49,14 @@ def make_chains(text_string=text_content):
 
     word_list = text_string.split()
 
-    chains_list = []
-
     for i in range(len(word_list) - 2):
-        chains[(word_list[i], word_list[i + 1])] = chains_list
+        key = (word_list[i], word_list[i + 1])
         value = word_list[i + 2]
-        print(value)
-        chains_list.append(value)
-        print(chains)
+        
+        if key not in chains:
+            chains[key] = []
 
-    print(chains)
-
-    # your code goes here
+        chains[key].append(value)
 
     return chains
 
