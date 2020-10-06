@@ -2,6 +2,8 @@
 
 from random import choice
 
+import random
+
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -52,7 +54,7 @@ def make_chains(text_string=text_content):
     for i in range(len(word_list) - 2):
         key = (word_list[i], word_list[i + 1])
         value = word_list[i + 2]
-        
+
         if key not in chains:
             chains[key] = []
 
@@ -61,7 +63,7 @@ def make_chains(text_string=text_content):
     return chains
 
 
-make_chains(text_content)
+print(make_chains(text_content))
 
 
 def make_text(chains):
@@ -70,6 +72,17 @@ def make_text(chains):
     words = []
 
     # your code goes here
+    current_key = random.choice(list(chains))
+    words = [current_key[0], current_key[1]]
+    current_value = random.choice(chains[current_key])
+    print()
+    print(current_key, current_value)
+
+    while current_key in chains.keys():
+        words.append(current_value)
+
+        current_key = (current_key[1], current_value)
+        print(current_key)
 
     return ' '.join(words)
 
