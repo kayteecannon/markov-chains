@@ -63,7 +63,7 @@ def make_chains(text_string=text_content):
     return chains
 
 
-print(make_chains(text_content))
+# print(make_chains(text_content))
 
 
 def make_text(chains):
@@ -75,14 +75,14 @@ def make_text(chains):
     current_key = random.choice(list(chains))
     words = [current_key[0], current_key[1]]
     current_value = random.choice(chains[current_key])
-    print()
-    print(current_key, current_value)
 
-    while current_key in chains.keys():
+    while current_key is not None:
         words.append(current_value)
 
         current_key = (current_key[1], current_value)
-        print(current_key)
+        if current_key == ('I', 'am?'):
+            break
+        current_value = random.choice(chains[current_key])
 
     return ' '.join(words)
 
